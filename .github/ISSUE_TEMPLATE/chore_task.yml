@@ -1,0 +1,28 @@
+name: 🧹 Chore / Task
+description: Refactor, cleanup, infra or non-feature work
+labels:
+  - chore
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What needs to be done?
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Add any relevant context, references or links.
+    validations:
+      required: false
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks / impact
+      description: Any risk to production, users or other teams?
+    validations:
+      required: false
