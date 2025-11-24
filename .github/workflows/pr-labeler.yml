@@ -1,0 +1,20 @@
+name: PR Labeler
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Label by branch prefix
+        uses: actions-ecosystem/action-add-labels@v1
+        if: github.event.pull_request.head.ref != ''
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          labels: >
+            ${{ startsWith(github.event.pull_request.head.ref, 'feat/') && 'feature' || '' }}
+            ${{ startsWith(github.event.pull_request.head.ref, 'fix/') && 'bug' || '' }}
+            ${{ startsWith(github.event.pull_request.head.ref, 'chore/') && 'chore' || '' }}
+            ${{ startsWith(github.event.pull_request.head.ref, 'docs/') && 'documentation' || '' }}
